@@ -1,2 +1,3 @@
-# DungeonSlayer
-Clicker Game in React
+---04/10/2024 1635--- Have a plan in my head and got an indea for how everything works. Also going to attept to stretch myself by adding a story using conditional rendering - also media queries are important since I work on a big screen and my mates test my projects on their phone.
+
+---05/10/2024 1720 --- Spent a few hours on this - I understand what Manny said about having different components and I know that in the future it will make life easier but for this project and my lack of skills passing data between components took 95% of my time to work out and only really got solved when I put the code into Chatg GPT to ask about my error - it was between child and grandchild component and I get what I did wrong but I would of never worked it out myselg. However I learnt alot about passing values and if you asked me to do it again it would be alot simplier to complete and I would be able to make it more complicated. I have a base game which works and have used media queires which means it works on phones - my mate said he enjoyed the alerts. I have some CSS to do and I want to add a seperate shop on another page...

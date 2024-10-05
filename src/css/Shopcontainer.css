@@ -1,0 +1,18 @@
+.shopItemsTitle {
+  cursor: pointer;
+  border: solid;
+  padding: 10px;
+  text-align: center;
+}
+
+.shopItems {
+  color: orangered;
+}
+
+.shopItemsContainer {
+  text-align: center;
+}
+.masterContainer {
+  width: 300px;
+
+}

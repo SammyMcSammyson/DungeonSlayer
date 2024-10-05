@@ -1,0 +1,111 @@
+[
+  {
+    "id": 101,
+    "name": "Iron Longsword",
+    "description": "A reliable blade for battling monsters in dark corridors.",
+    "price": 200,
+    "GpS": "1",
+    "inventory": 15,
+    "BUY": "BUY"
+  },
+  {
+    "id": 102,
+    "name": "Crossbow of Precision",
+    "description": "A ranged weapon designed for quick, accurate shots in tight dungeon spaces.",
+    "price": 400,
+    "GpS": "1.5",
+    "inventory": 8,
+    "BUY": "BUY"
+  },
+
+  {
+    "id": 103,
+    "name": "Mage's Staff",
+    "description": "A staff imbued with elemental magic for powerful spellcasting.",
+    "price": 300,
+    "GpS": "2",
+    "inventory": 7,
+    "BUY": "BUY"
+  },
+  {
+    "id": 104,
+    "name": "Leather Armor",
+    "description": "Light and flexible armor, offering basic protection.",
+    "price": 120,
+    "GpS": "0.8",
+    "inventory": 12,
+    "BUY": "BUY"
+  },
+  {
+    "id": 105,
+    "name": "Healing Potion",
+    "description": "Restores a small amount of health instantly.",
+    "price": 50,
+    "GpS": "100",
+    "inventory": 30,
+    "BUY": "BUY"
+  },
+  {
+    "id": 106,
+    "name": "Crossbow",
+    "description": "A ranged weapon capable of firing bolts at distant enemies.",
+    "price": 250,
+    "GpS": "1.5",
+    "inventory": 5,
+    "BUY": "BUY"
+  },
+  {
+    "id": 107,
+    "name": "Fire Arrows",
+    "description": "Arrows tipped with fire to deal extra damage to enemies.",
+    "price": 80,
+    "GpS": "1.2",
+    "inventory": 20,
+    "BUY": "BUY"
+  },
+  {
+    "id": 108,
+    "name": "Iron Helmet",
+    "description": "An iron helmet that offers solid protection for the head.",
+    "price": 100,
+    "GpS": "0.6",
+    "inventory": 10,
+    "BUY": "BUY"
+  },
+  {
+    "id": 109,
+    "name": "Enchanted Cloak",
+    "description": "A cloak that enhances the wearer's magical abilities.",
+    "price": 400,
+    "GpS": "3",
+    "inventory": 4,
+    "BUY": "BUY"
+  },
+  {
+    "id": 110,
+    "name": "Poison Dagger",
+    "description": "A small, sharp dagger laced with poison for lethal strikes.",
+    "price": 180,
+    "GpS": "1.8",
+    "inventory": 6,
+    "BUY": "BUY"
+  },
+  {
+    "id": 111,
+    "name": "Silver Ring",
+    "description": "A ring enchanted to boost the wearer's stamina.",
+    "price": 220,
+    "GpS": "1.1",
+    "inventory": 9,
+    "BUY": "BUY"
+  },
+  {
+    "id": 112,
+    "name": "Thunder Axe",
+    "description": "A mighty axe that crackles with the power of lightning.",
+    "price": 500,
+    "GpS": "4",
+    "inventory": 3,
+    "BUY": "BUY"
+  }
+]

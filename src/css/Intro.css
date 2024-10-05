@@ -1,0 +1,11 @@
+.dwarf {
+  width: 100px;
+  height: 100px;
+}
+.master {
+  display: flex;
+}
+
+* {
+  font-family: Pixelify Sans;
+}

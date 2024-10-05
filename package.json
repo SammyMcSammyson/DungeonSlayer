@@ -2,7 +2,7 @@
   "name": "dungeon-slayer",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://sammymcsammyson.github.io/Dungeon-Slayer/",
+  "homepage": "https://sammymcsammyson.github.io/DungeonSlayer/",
   "type": "module",
   "scripts": {
     "dev": "vite",

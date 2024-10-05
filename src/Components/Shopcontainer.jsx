@@ -9,11 +9,14 @@ export default function ShopContainer({ item, buyItem }) {
     //adding to button
     setIsVisible(!isVisible);
   }
+
+  let itemCounter = localStorage.getItem(item.name);
+
   return (
     <>
       <div className='masterContainer'>
         <p className='shopItemsTitle' onClick={handleClick}>
-          {item.name}
+          {item.name} - {itemCounter}
         </p>
         <div className='shopItemsContainer'>
           {isVisible ? (

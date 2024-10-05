@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import Shop from './Shop';
+import dragon from '../../public/images/dragon.png';
 
 export default function Golds() {
-  let [counter, setCounter] = useState(0);
+  let [counter, setCounter] = useState(100);
   // setting up my global counter variable - changes on reset
 
-  let [counter1, setCounter1] = useState(0);
+  let [counter1, setCounter1] = useState(100);
   //used for my rendering.
-  let [donateCounter, setDonateCounter] = useState(0);
+  let [donateCounter, setDonateCounter] = useState(100);
   //setting up global donate variable - changes on reset
   let [gambleCounter, setGambleCounter] = useState(0);
   //setting up global gamble variable - changes on reset
@@ -90,6 +91,11 @@ export default function Golds() {
       setCounter((prevGold) => prevGold - shop.price);
       setGpS((prevGpS) => prevGpS + parseFloat(shop.GpS));
       //parsefloat is a god send.
+
+      let count = localStorage.getItem(shop.name); //tracking number of items in local storage which then can pull later - not the best way to do this however it is the simpliest to track clicks - I am not a fan of useEffect.
+      count = count ? parseInt(count) : 0;
+      count += 1;
+      localStorage.setItem(shop.name, count);
 
       let buttonAlert = localStorage.getItem('firstPurchase') || '';
       if (buttonAlert != 'yes') {

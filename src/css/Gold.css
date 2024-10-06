@@ -1,0 +1,48 @@
+.componentContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.shopContianer {
+  display: block;
+}
+
+.journalContainer {
+  display: block;
+}
+
+@media (max-width: 320px) {
+  .componentContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+  /* iPhone, portrait 480x320 */
+}
+@media (max-width: 481px) {
+  .componentContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+  /*smaller tablets */
+}
+@media (max-width: 641px) {
+  .componentContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /*portrait iPad */
+}
+@media (max-width: 961px) {
+  /*landscape iPad */
+}
+
+@media (max-width: 1025px) {
+  /*laptops */
+}
+@media (max-width: 1281px) {
+  /* desktops */
+}
+@media (max-width: 2000px) {
+  /* desktops -large */
+}

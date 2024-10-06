@@ -1,5 +1,6 @@
 
-.shopTitle {
+
+.JournalTitle {
   font-size: 36px;
   display: flex;
   justify-content: center;
@@ -14,19 +15,19 @@
 }
 @media (max-width: 481px) {
   /*smaller tablets */
-  .shopTitle {
+  .JournalTitle {
     width: 300px;
   }
 }
 @media (max-width: 641px) {
-  .shopTitle {
+  .JournalTitle {
     width: 400px;
   }
 
   /*portrait iPad */
 }
 @media (max-width: 961px) {
-  .shopTitle {
+  .JournalTitle {
     width: 600px;
   }
 
@@ -34,14 +35,14 @@
 }
 
 @media (max-width: 1025px) {
-  .shopTitle {
+  .JournalTitle {
     width: 600px;
   }
 
   /*laptops */
 }
 @media (max-width: 1281px) {
-  .shopTitle {
+  .JournalTitle {
     width: 600px;
   }
 
@@ -49,7 +50,7 @@
 }
 
 @media (max-width: 2000px) {
-  .shopTitle {
+  .JournalTitle {
     width: 600px;
   }
 

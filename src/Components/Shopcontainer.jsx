@@ -12,11 +12,12 @@ export default function ShopContainer({ item, buyItem }) {
 
   let itemCounter = localStorage.getItem(item.name);
 
+  
   return (
     <>
       <div className='masterContainer'>
         <p className='shopItemsTitle' onClick={handleClick}>
-          {item.name} - {itemCounter}
+          {item.name} - {itemCounter ? itemCounter : 0}
         </p>
         <div className='shopItemsContainer'>
           {isVisible ? (

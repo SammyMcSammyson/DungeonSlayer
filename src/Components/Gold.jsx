@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import Shop from './Shop';
-import dragon from '../../public/images/dragon.png';
+import Journals from './Journal';
+import '../css/Gold.css';
 
-export default function Golds() {
+export default function Gold() {
   let [counter, setCounter] = useState(100);
   // setting up my global counter variable - changes on reset
 
@@ -12,7 +13,11 @@ export default function Golds() {
   //setting up global donate variable - changes on reset
   let [gambleCounter, setGambleCounter] = useState(0);
   //setting up global gamble variable - changes on reset
+  const [showJournal, setShowJournal] = useState(false);
+  //variable to check local storage continously not the cleanest way to do this and for bigger apps will cause issues but it works...
+
   let [GperS, setGpS] = useState(0);
+  //setting up global GpS counter
 
   useEffect(() => {
     //function that gets GpS working
@@ -23,6 +28,16 @@ export default function Golds() {
       clearInterval(GpSInterval);
     };
   }, [GperS]);
+
+  useEffect(() => {
+    //function to check local storage works pretty much the same as GPS counter
+    const interval = setInterval(() => {
+      const journalpresent = localStorage.getItem('Journal') !== null;
+      setShowJournal(journalpresent);
+    }, 1000); // Check every second
+
+    return () => clearInterval(interval); // Clean up on unmount
+  }, []);
 
   function reset() {
     //reset button
@@ -107,9 +122,33 @@ export default function Golds() {
 
       console.log(`Purchased: ${shop.name}`); //checking everything works
     } else {
+      console.log(shop.price);
       alert(
         'You are waaay to poor to buy this, have you tried gambling to earn some money?'
       );
+    }
+  };
+
+  const buyJournal = (shop) => {
+    //second time I am doing it, it is alot easier - helps that I actually know what I am doing
+
+    if (counter >= shop.PriceToUnlock) {
+      setCounter((prevGold) => prevGold - shop.PriceToUnlock);
+      //parsefloat is a god send.
+
+      let count = localStorage.getItem(shop.Name); //Useful to have in Local storage since the game can track where they are in the story
+      count = count ? parseInt(count) : 0;
+      count += 1;
+      localStorage.setItem(shop.Name, count);
+
+      let buttonAlert = localStorage.getItem('firstJournal') || '';
+      if (buttonAlert != 'yes') {
+        alert(
+          'Congratulations you have taken the first steps to saving the princess'
+        );
+        localStorage.setItem('firstJournal', 'yes');
+      }
+      console.log(`Purchased: ${shop.Name}`); //checking everything works
     }
   };
 
@@ -132,14 +171,14 @@ export default function Golds() {
       let buttonAlert = localStorage.getItem('donateButton') || '';
       if (buttonAlert != 'yes') {
         alert(
-          'As you delve deeper into the dungeon collecting coins a button appears'
+          'As you delve deeper into the dungeon collecting coins a button appears asking to donate to the Troll union'
         );
         localStorage.setItem('donateButton', 'yes');
       }
       return (
         <>
           <p> Total Gold = {counter} </p>
-          <p> Donated Gold = {donateCounter}</p>
+          <p> Gold donated to Troll Union = {donateCounter}</p>
 
           <button onClick={handleAdditionCounter}>Collect Gold</button>
           <button onClick={handleSubtractionCounter}>Donate Gold</button>
@@ -158,7 +197,7 @@ export default function Golds() {
       return (
         <>
           <p> Total Gold = {counter} </p>
-          <p> Donated Gold = {donateCounter}</p>
+          <p> Gold donated to Troll Union = {donateCounter}</p>
           <p> Gambling Winnings = {gambleCounter}</p>
 
           <button onClick={handleAdditionCounter}>Collect Gold</button>
@@ -182,7 +221,7 @@ export default function Golds() {
         //returns evverything
         <>
           <p> Total Gold = {counter} </p>
-          <p> Donated Gold = {donateCounter}</p>
+          <p> Gold donated to Troll Union = {donateCounter}</p>
           <p> Gambling Winnings = {gambleCounter}</p>
           <p> Gold Per Second = {GperS}</p>
           <button onClick={handleAdditionCounter}>Collect Gold</button>
@@ -191,14 +230,28 @@ export default function Golds() {
           <button onClick={reset}>Reset</button>
           <br></br>
           <br></br>
-
-          <Shop
-            counter={counter}
-            donateCounter={donateCounter}
-            gambleCounter={gambleCounter}
-            GperS={GperS}
-            buyItem={buyItem}
-          />
+          <div className='componentContainer'>
+            <div className='shopContainer'>
+              <Shop
+                counter={counter}
+                donateCounter={donateCounter}
+                gambleCounter={gambleCounter}
+                GperS={GperS}
+                buyItem={buyItem}
+              />
+            </div>
+            <div className='journalContainer'>
+              {showJournal && (
+                //working out I could do it like this came waaaaay to late and I cba to rewrite all my code however next time I do something like this I will. Also found out about DRY which I will do from now on/
+                <Journals
+                  counter={counter}
+                  donateCounter={donateCounter}
+                  gambleCounter={gambleCounter}
+                  buyJournal={buyJournal}
+                />
+              )}
+            </div>
+          </div>
         </>
       );
     }

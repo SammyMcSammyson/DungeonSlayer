@@ -4,7 +4,7 @@
 // import { useEffect } from 'react';
 import Header from './Components/Header';
 import Intro from './Components/Intro';
-import Gold from './Components/Combined';
+import Gold from './Components/Gold';
 
 export default function App() {
   return (

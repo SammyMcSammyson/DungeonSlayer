@@ -4,8 +4,53 @@
 }
 .master {
   display: flex;
+  width: 300px;
 }
 
 * {
   font-family: Pixelify Sans;
+  font-size: 12px;
+}
+
+@media (max-width: 320px) {
+  /* iPhone, portrait 480x320 */
+}
+@media (max-width: 481px) {
+  /*smaller tablets */
+}
+@media (max-width: 641px) {
+  .master {
+    width: 400px;
+  }
+
+  /*portrait iPad */
+}
+@media (max-width: 961px) {
+  .master {
+    width: 600px;
+  }
+
+  /*landscape iPad */
+}
+
+@media (max-width: 1025px) {
+  .master {
+    width: 600px;
+  }
+
+  /*laptops */
+}
+@media (max-width: 1281px) {
+  .master {
+    width: 600px;
+  }
+
+  /* desktops */
+}
+@media (max-width: 2000px) {
+  .master {
+    width: 600px;
+  }
+
+  /* desktops -large */
 }

@@ -4,14 +4,14 @@ import Journals from './Journal';
 import '../css/Gold.css';
 
 export default function Gold() {
-  let [counter, setCounter] = useState(0);
+  let [counter, setCounter] = useState(1000);
   // setting up my global counter variable - changes on reset
 
-  let [counter1, setCounter1] = useState(0);
+  let [counter1, setCounter1] = useState(100);
   //used for my rendering.
-  let [donateCounter, setDonateCounter] = useState(0);
+  let [donateCounter, setDonateCounter] = useState(1000);
   //setting up global donate variable - changes on reset
-  let [gambleCounter, setGambleCounter] = useState(0);
+  let [gambleCounter, setGambleCounter] = useState(-100);
   //setting up global gamble variable - changes on reset
   let [showJournal, setShowJournal] = useState(false);
   //variable to check local storage continously not the cleanest way to do this and for bigger apps will cause issues but it works...
@@ -19,6 +19,38 @@ export default function Gold() {
   //variable for shop unlock
   let [GperS, setGpS] = useState(0);
   //setting up global GpS counter
+
+  // let purchasedItems = ['Sword', 'Armor ']; //Setting up my array which I will eventually get to load from local storage.
+
+  // let purchasedItems = [];
+
+  // function keyValues() {
+  //   let purchasedItems = [];
+
+  //   for (let i = 0; i < localStorage.length; i++) {
+  //     let key = localStorage.key(i);
+
+  //     purchasedItems.push({ key: key });
+  //   }
+
+  //   return purchasedItems;
+  // }
+  let [purchasedItems, setPurchasedItems] = useState([]);
+
+  function inStorage() {
+    let array = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      array.push(key);
+    }
+    return array;
+  }
+
+  useEffect(() => {
+    setPurchasedItems(inStorage());
+    console.log(inStorage);
+    console.log(purchasedItems);
+  }, [counter]); // this is not pretty and is slow but it works and will break if this gets more complicated.
 
   useEffect(() => {
     //function that gets GpS working
@@ -46,6 +78,7 @@ export default function Gold() {
     setCounter1((counter = 0));
     setDonateCounter((donateCounter = 0));
     setGambleCounter((gambleCounter = 0));
+    setGpS((GperS = 0));
     localStorage.clear();
   }
 
@@ -249,6 +282,8 @@ export default function Gold() {
                   donateCounter={donateCounter}
                   gambleCounter={gambleCounter}
                   buyJournal={buyJournal}
+                  reset={reset}
+                  purchasedItems={purchasedItems}
                 />
               )}
             </div>

@@ -3,7 +3,12 @@ import JournalContainer from './Journalcontainer';
 import '../css/Journal.css';
 import { useState } from 'react';
 
-export default function Journals({ buyJournal, counter }) {
+export default function Journals({
+  buyJournal,
+  counter,
+  reset,
+  purchasedItems,
+}) {
   let [isVisible, setIsVisible] = useState(false);
   function handleClick() {
     //adding to button
@@ -23,8 +28,12 @@ export default function Journals({ buyJournal, counter }) {
               Name={shopItems.Name}
               PriceToUnlock={shopItems.PriceToUnlock}
               item={shopItems}
+              ConditionToNotDie={shopItems.ConditionToNotDie}
               buyJournal={buyJournal}
+              DeathMessage={shopItems.DeathMessage}
               counter={counter}
+              reset={reset}
+              purchasedItems={purchasedItems}
             />
           </div>
         ))}

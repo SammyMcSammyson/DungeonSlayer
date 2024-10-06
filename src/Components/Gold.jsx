@@ -4,18 +4,19 @@ import Journals from './Journal';
 import '../css/Gold.css';
 
 export default function Gold() {
-  let [counter, setCounter] = useState(0);
+  let [counter, setCounter] = useState(100);
   // setting up my global counter variable - changes on reset
 
-  let [counter1, setCounter1] = useState(0);
+  let [counter1, setCounter1] = useState(100);
   //used for my rendering.
-  let [donateCounter, setDonateCounter] = useState(0);
+  let [donateCounter, setDonateCounter] = useState(100);
   //setting up global donate variable - changes on reset
   let [gambleCounter, setGambleCounter] = useState(0);
   //setting up global gamble variable - changes on reset
-  const [showJournal, setShowJournal] = useState(false);
+  let [showJournal, setShowJournal] = useState(false);
   //variable to check local storage continously not the cleanest way to do this and for bigger apps will cause issues but it works...
-
+  let [unlockShop, setUnlockShop] = useState(false);
+  //variable for shop unlock
   let [GperS, setGpS] = useState(0);
   //setting up global GpS counter
 
@@ -194,6 +195,7 @@ export default function Gold() {
         );
         localStorage.setItem('gamblingButton', 'yes');
       }
+
       return (
         <>
           <p> Total Gold = {counter} </p>
@@ -216,7 +218,6 @@ export default function Gold() {
         );
         localStorage.setItem('GpSButton', 'yes');
       }
-
       return (
         //returns evverything
         <>

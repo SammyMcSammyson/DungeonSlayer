@@ -4,7 +4,7 @@ import dwarf from '../../public/images/dwarf.jpg';
 export default function Intro() {
   return (
     <div className='master'>
-      {/* <img className='dwarf' src={dwarf}></img> */}
+      <img className='dwarf' src={dwarf}></img>
       <p>
         You are a questing Adventuer who has just entered a dungeon. You have
         done this a million times and this is no different. Slay the Dragon,

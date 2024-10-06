@@ -33,6 +33,7 @@
     text-align: center;
     list-style: none;
     color: orangered;
+    width: 90%;
   }
 
   .mainnavlink {
@@ -42,7 +43,7 @@
     list-style: none;
     color: rgb(0, 0, 0);
     font-size: 9px;
-    width: 200px;
+    width: 90%;
   }
 }
 @media (max-width: 481px) {
@@ -52,7 +53,7 @@
     text-align: center;
     list-style: none;
     color: orangered;
-    width: 300px;
+    width: 90%;
   }
 
   .mainnavlink {

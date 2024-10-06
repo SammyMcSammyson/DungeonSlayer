@@ -4,12 +4,12 @@ import Journals from './Journal';
 import '../css/Gold.css';
 
 export default function Gold() {
-  let [counter, setCounter] = useState(100);
+  let [counter, setCounter] = useState(0);
   // setting up my global counter variable - changes on reset
 
-  let [counter1, setCounter1] = useState(100);
+  let [counter1, setCounter1] = useState(0);
   //used for my rendering.
-  let [donateCounter, setDonateCounter] = useState(100);
+  let [donateCounter, setDonateCounter] = useState(0);
   //setting up global donate variable - changes on reset
   let [gambleCounter, setGambleCounter] = useState(0);
   //setting up global gamble variable - changes on reset

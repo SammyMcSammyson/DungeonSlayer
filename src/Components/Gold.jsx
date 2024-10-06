@@ -4,14 +4,14 @@ import Journals from './Journal';
 import '../css/Gold.css';
 
 export default function Gold() {
-  let [counter, setCounter] = useState(1000);
+  let [counter, setCounter] = useState(0);
   // setting up my global counter variable - changes on reset
 
-  let [counter1, setCounter1] = useState(100);
+  let [counter1, setCounter1] = useState(0);
   //used for my rendering.
-  let [donateCounter, setDonateCounter] = useState(1000);
+  let [donateCounter, setDonateCounter] = useState(0);
   //setting up global donate variable - changes on reset
-  let [gambleCounter, setGambleCounter] = useState(-100);
+  let [gambleCounter, setGambleCounter] = useState(0);
   //setting up global gamble variable - changes on reset
   let [showJournal, setShowJournal] = useState(false);
   //variable to check local storage continously not the cleanest way to do this and for bigger apps will cause issues but it works...
@@ -46,6 +46,27 @@ export default function Gold() {
     return array;
   }
 
+  function donateStoreage() {
+    if (donateCounter >= 200) {
+      localStorage.setItem('Donated 200', 'yes');
+    }
+  }
+
+  function gambleStorage() {
+    if (gambleCounter <= -100) {
+      localStorage.setItem('Gamble at least -100', 'yes');
+    }
+  }
+
+  function GpSStorage() {
+    if (GperS >= 15) {
+      localStorage.setItem('GPS > 15', 'yes');
+    }
+  }
+  GpSStorage();
+  gambleStorage();
+  donateStoreage();
+
   useEffect(() => {
     setPurchasedItems(inStorage());
     console.log(inStorage);
@@ -70,7 +91,7 @@ export default function Gold() {
     }, 1000); // Check every second
 
     return () => clearInterval(interval); // Clean up on unmount
-  }, []);
+  }, []); //in hindsight I should of just done this on Counter in the dependency - C'est la vie.
 
   function reset() {
     //reset button

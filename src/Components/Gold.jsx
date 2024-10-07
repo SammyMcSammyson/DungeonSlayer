@@ -9,9 +9,9 @@ export default function Gold() {
 
   let [counter1, setCounter1] = useState(100);
   //used for my rendering.
-  let [donateCounter, setDonateCounter] = useState(100);
+  let [donateCounter, setDonateCounter] = useState(200);
   //setting up global donate variable - changes on reset
-  let [gambleCounter, setGambleCounter] = useState(0);
+  let [gambleCounter, setGambleCounter] = useState(-100);
   //setting up global gamble variable - changes on reset
   let [gambleCounter1, setGambleCounter1] = useState(0);
   //used for rendering
@@ -212,8 +212,6 @@ export default function Gold() {
     }
   };
 
-
-
   function buttonsAppear() {
     //if function making butons appear when certain thresholds
     if (counter1 < 10 && gambleCounter1 >= 0) {
@@ -237,7 +235,7 @@ export default function Gold() {
         );
         localStorage.setItem('donateButton', 'yes');
       }
-      console.log(counter1, donateCounter, gambleCounter1)
+      console.log(counter1, donateCounter, gambleCounter1);
       return (
         <>
           <p> Total Gold = {counter} </p>
@@ -248,7 +246,12 @@ export default function Gold() {
           <button onClick={reset}>Reset</button>
         </>
       );
-    } else if (counter1 >= 10 && donateCounter >= 50 && gambleCounter1 >= 0 && gambleCounter1 < 5) {
+    } else if (
+      counter1 >= 10 &&
+      donateCounter >= 50 &&
+      gambleCounter1 >= 0 &&
+      gambleCounter1 < 5
+    ) {
       //third part it was about here i realiesed I  can use function for repeatingg code but im nearly finished
       let buttonAlert = localStorage.getItem('gamblingButton') || '';
       if (buttonAlert != 'yes') {
@@ -294,13 +297,15 @@ export default function Gold() {
           <br></br>
           <br></br>
           <div className='componentContainer'>
-            <div className='shopContainer'><Shop
-          counter={counter}
-          donateCounter={donateCounter}
-          gambleCounter={gambleCounter}
-          GperS={GperS}
-          buyItem={buyItem}
-        /></div>
+            <div className='shopContainer'>
+              <Shop
+                counter={counter}
+                donateCounter={donateCounter}
+                gambleCounter={gambleCounter}
+                GperS={GperS}
+                buyItem={buyItem}
+              />
+            </div>
             <div className='journalContainer'>
               {showJournal && (
                 //working out I could do it like this came waaaaay to late and I cba to rewrite all my code however next time I do something like this I will. Also found out about DRY which I will do from now on/

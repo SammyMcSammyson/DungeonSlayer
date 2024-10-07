@@ -12,7 +12,6 @@ export default function ShopContainer({ item, buyItem }) {
 
   let itemCounter = localStorage.getItem(item.name);
 
-  
   return (
     <>
       <div className='masterContainer'>
@@ -28,6 +27,8 @@ export default function ShopContainer({ item, buyItem }) {
               <p className='shopItems'> {item.price} </p>
               <p>Gold per Second:</p>
               <p className='shopItems'> {item.GpS}</p>
+              <p> Increased Gold from Collection</p>
+              <p className='shopItems'>{item.GoldCollectionMultiplier}</p>
               <button onClick={() => buyItem(item)}>Buy</button>
               {/* the mystry line that makes it all work */}
             </>

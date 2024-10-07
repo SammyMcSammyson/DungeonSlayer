@@ -2,13 +2,16 @@ import { useEffect, useState } from 'react';
 import Shop from './Shop';
 import Journals from './Journal';
 import '../css/Gold.css';
+import data from '../../public/Lib/data.json';
 
 export default function Gold() {
-  let [counter, setCounter] = useState(100);
+  let [counter, setCounter] = useState(10000);
   // setting up my global counter variable - changes on reset
 
   let [counter1, setCounter1] = useState(100);
   //used for my rendering.
+  let [counter2, setCounter2] = useState(0);
+  //used to make button counter incremnetally increase.
   let [donateCounter, setDonateCounter] = useState(200);
   //setting up global donate variable - changes on reset
   let [gambleCounter, setGambleCounter] = useState(-100);
@@ -21,6 +24,19 @@ export default function Gold() {
   //variable for shop unlock
   let [GperS, setGpS] = useState(0);
   //setting up global GpS counter
+  const [isAnimating, setIsAnimating] = useState(false);
+  function load() {
+    localStorage.getItem({
+      counter,
+      donateCounter,
+      gambleCounter,
+      gambleCounter1,
+      GperS,
+    });
+  }
+  load();
+
+  // State to handle animation
 
   // let purchasedItems = ['Sword', 'Armor ']; //Setting up my array which I will eventually get to load from local storage.
 
@@ -99,11 +115,29 @@ export default function Gold() {
     //reset button
     setCounter((counter = 0));
     setCounter1((counter = 0));
+    setCounter2((counter2 = 0));
+
     setDonateCounter((donateCounter = 0));
     setGambleCounter((gambleCounter = 0));
     setGambleCounter1((gambleCounter1 = 0));
     setGpS((GperS = 0));
     localStorage.clear();
+  }
+  function save() {
+    //save button
+    setCounter((counter = counter));
+    setCounter1((counter = counter));
+    setDonateCounter((donateCounter = donateCounter));
+    setGambleCounter((gambleCounter = gambleCounter));
+    setGambleCounter1((gambleCounter1 = gambleCounter1));
+    setGpS((GperS = GperS));
+    localStorage.setItem({
+      counter,
+      donateCounter,
+      gambleCounter,
+      gambleCounter1,
+      GperS,
+    });
   }
 
   function loser() {
@@ -120,8 +154,14 @@ export default function Gold() {
 
   function handleAdditionCounter() {
     // function handling the addition
-    setCounter((counter = counter + 1));
+    setCounter((counter = counter + 1 + counter2));
     setCounter1((counter1 = counter1 + 1));
+
+    setIsAnimating(true);
+
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 300);
   }
 
   function GpSCounter() {
@@ -164,7 +204,15 @@ export default function Gold() {
     //this part took me sooooo long but thorugh Chat GPT and copius amounts of googleing it works.
     if (counter >= shop.price) {
       setCounter((prevGold) => prevGold - shop.price);
-      setGpS((prevGpS) => prevGpS + parseFloat(shop.GpS));
+      console.log(shop.Attack);
+      if (shop.Attack === 'No') {
+        setGpS((prevGpS) => prevGpS + parseFloat(shop.GpS));
+      } else {
+        setCounter2(
+          (prevCounter) =>
+            prevCounter + parseFloat(shop.GoldCollectionMultiplier)
+        );
+      }
       //parsefloat is a god send.
 
       let count = localStorage.getItem(shop.name); //tracking number of items in local storage which then can pull later - not the best way to do this however it is the simpliest to track clicks - I am not a fan of useEffect.
@@ -212,6 +260,18 @@ export default function Gold() {
     }
   };
 
+  function handleDragonsGuild() {
+    if (!purchasedItems.includes('winner')) {
+      console.log('you win.');
+      setCounter((counter = counter + 10000));
+      alert(
+        'Congrtulations on defeating the Dragon. The princess gives you a reward of 10000 Gold. Maybe you can buy a guild with it...'
+      );
+
+      console.log('you win.');
+    }
+  }
+
   function buttonsAppear() {
     //if function making butons appear when certain thresholds
     if (counter1 < 10 && gambleCounter1 >= 0) {
@@ -220,7 +280,12 @@ export default function Gold() {
           <p> Total Gold = {counter} </p>
 
           {/* <p> Gold Per Second = {GpS} </p>  check variable*/}
-          <button onClick={handleAdditionCounter}>Collect Gold</button>
+          <button
+            className={isAnimating ? 'shake' : ''}
+            onClick={handleAdditionCounter}
+          >
+            Collect Gold
+          </button>
           {/* <button onClick={GpSCounter}>Gold Per Second</button> check variables */}
 
           <button onClick={reset}>Reset</button>
@@ -241,7 +306,12 @@ export default function Gold() {
           <p> Total Gold = {counter} </p>
           <p> Gold donated to Troll Union = {donateCounter}</p>
 
-          <button onClick={handleAdditionCounter}>Collect Gold</button>
+          <button
+            className={isAnimating ? 'shake' : ''}
+            onClick={handleAdditionCounter}
+          >
+            Collect Gold
+          </button>
           <button onClick={handleSubtractionCounter}>Donate Gold</button>
           <button onClick={reset}>Reset</button>
         </>
@@ -266,7 +336,12 @@ export default function Gold() {
           <p> Gold donated to Troll Union = {donateCounter}</p>
           <p> Gambling Winnings = {gambleCounter}</p>
 
-          <button onClick={handleAdditionCounter}>Collect Gold</button>
+          <button
+            className={isAnimating ? 'shake' : ''}
+            onClick={handleAdditionCounter}
+          >
+            Collect Gold
+          </button>
           <button onClick={handleSubtractionCounter}>Donate Gold</button>
           <button onClick={handleRandomCounter}>Gamble Gold</button>
 
@@ -289,8 +364,14 @@ export default function Gold() {
           <p> Total Gold = {counter} </p>
           <p> Gold donated to Troll Union = {donateCounter}</p>
           <p> Gambling Winnings = {gambleCounter}</p>
+          <p> Increased Gold from Collection = {counter2}</p>
           <p> Gold Per Second = {GperS}</p>
-          <button onClick={handleAdditionCounter}>Collect Gold</button>
+          <button
+            className={isAnimating ? 'shake' : ''}
+            onClick={handleAdditionCounter}
+          >
+            Collect Gold
+          </button>
           <button onClick={handleSubtractionCounter}>Donate Gold</button>
           <button onClick={handleRandomCounter}>Gamble Gold</button>
           <button onClick={reset}>Reset</button>
@@ -313,9 +394,11 @@ export default function Gold() {
                   counter={counter}
                   donateCounter={donateCounter}
                   gambleCounter={gambleCounter}
+                  counter2={counter2}
                   buyJournal={buyJournal}
                   reset={reset}
                   purchasedItems={purchasedItems}
+                  handleDragonsGuild={handleDragonsGuild}
                 />
               )}
             </div>

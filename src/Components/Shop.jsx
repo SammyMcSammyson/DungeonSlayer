@@ -28,6 +28,11 @@ export default function Shop({ buyItem }) {
               GpS={shopItems.GpS}
               BUY={shopItems.BUY}
               item={shopItems}
+              Gold
+              Collection
+              GoldCollectionMultiplier={shopItems.GoldCollectionMultiplier}
+              Attack={shopItems.attack}
+              unknown={shopItems.unknown}
               buyItem={buyItem}
             />
           </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../css/Journalcontainer.css';
+import Journal from '../../public/Lib/jorunal.json';
 
 export default function JournalContainer({
   item,
@@ -7,6 +8,8 @@ export default function JournalContainer({
   counter,
   reset,
   purchasedItems,
+  index,
+  handleDragonsGuild,
 }) {
   let [isVisible, setIsVisible] = useState(false);
   //setting visbile and non visbile
@@ -35,6 +38,15 @@ export default function JournalContainer({
       buyJournal(item);
       setJournalPurchase(true);
       setItemColour('lightgreen'); // Change color to indicate it's unlocked
+      setIndex;
+      console.log(index);
+      handleDragonsGuild(index);
+    }
+  }
+
+  function setIndex() {
+    if (index === 19) {
+      localStorage.setItem('winner", "Yes');
     }
   }
 
@@ -48,6 +60,7 @@ export default function JournalContainer({
         >
           {item.Name}
         </p>
+
         <div className='shopItemsContainer'>
           {isVisible ? (
             <>
@@ -57,6 +70,8 @@ export default function JournalContainer({
                 </>
               ) : (
                 <>
+                  <p>Advice</p>
+                  <p>{item.Advice}</p>
                   <p>Price to Unlock:</p>
                   <p className='shopItems'> {item.PriceToUnlock} </p>
                   <button onClick={handleBuy}>Unlock</button>

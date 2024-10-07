@@ -8,6 +8,7 @@ export default function Journals({
   counter,
   reset,
   purchasedItems,
+  handleDragonsGuild,
 }) {
   let [isVisible, setIsVisible] = useState(false);
   function handleClick() {
@@ -22,10 +23,11 @@ export default function Journals({
       </h1>
 
       {isVisible &&
-        Journal.map((shopItems) => (
+        Journal.map((shopItems, index) => (
           <div key={shopItems.ID}>
             <JournalContainer
               Name={shopItems.Name}
+              Advice={shopItems.Advice}
               PriceToUnlock={shopItems.PriceToUnlock}
               item={shopItems}
               ConditionToNotDie={shopItems.ConditionToNotDie}
@@ -34,6 +36,8 @@ export default function Journals({
               counter={counter}
               reset={reset}
               purchasedItems={purchasedItems}
+              index={index}
+              handleDragonsGuild={handleDragonsGuild}
             />
           </div>
         ))}

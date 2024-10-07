@@ -1,13 +1,9 @@
-
-
 .JournalTitle {
   font-size: 36px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 5vh;
   border: 3px solid green;
+  max-width: 350px;
 }
 
 @media (max-width: 320px) {

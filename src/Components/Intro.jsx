@@ -5,7 +5,7 @@ export default function Intro() {
   return (
     <div className='master'>
       <img className='dwarf' src={dwarf}></img>
-      <p>
+      <p className='paragraph'>
         You are a questing Adventuer who has just entered a dungeon. You have
         done this a million times and this is no different. Slay the Dragon,
         Save the Princess. Collect Gold, Upgrade your Gear and go Fight.

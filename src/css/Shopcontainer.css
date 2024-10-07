@@ -5,9 +5,8 @@
   font-size: 18px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  text-align: center;
   min-height: 2vh;
+  max-width: 330px;
 }
 
 .shopItems {

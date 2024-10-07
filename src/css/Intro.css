@@ -5,10 +5,11 @@
 .master {
   display: flex;
   font-size: 12px;
-  width: 100%;
-  background-color: aqua;
 }
 
+.paragraph {
+  width: 250px;
+}
 * {
   font-family: Pixelify Sans;
 }

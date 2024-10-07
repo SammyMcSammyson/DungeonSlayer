@@ -1,7 +1,6 @@
 import '../css/Header.css';
 
 export default function Header() {
-
   return (
     <>
       {/* simple header made it like this if I want to add something in the future - Have an idea about shop but i think its way to complicated 04/10/24 1641 */}

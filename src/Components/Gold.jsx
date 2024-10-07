@@ -4,15 +4,17 @@ import Journals from './Journal';
 import '../css/Gold.css';
 
 export default function Gold() {
-  let [counter, setCounter] = useState(0);
+  let [counter, setCounter] = useState(100);
   // setting up my global counter variable - changes on reset
 
-  let [counter1, setCounter1] = useState(0);
+  let [counter1, setCounter1] = useState(100);
   //used for my rendering.
-  let [donateCounter, setDonateCounter] = useState(0);
+  let [donateCounter, setDonateCounter] = useState(100);
   //setting up global donate variable - changes on reset
   let [gambleCounter, setGambleCounter] = useState(0);
   //setting up global gamble variable - changes on reset
+  let [gambleCounter1, setGambleCounter1] = useState(0);
+  //used for rendering
   let [showJournal, setShowJournal] = useState(false);
   //variable to check local storage continously not the cleanest way to do this and for bigger apps will cause issues but it works...
   let [unlockShop, setUnlockShop] = useState(false);
@@ -99,6 +101,7 @@ export default function Gold() {
     setCounter1((counter = 0));
     setDonateCounter((donateCounter = 0));
     setGambleCounter((gambleCounter = 0));
+    setGambleCounter1((gambleCounter1 = 0));
     setGpS((GperS = 0));
     localStorage.clear();
   }
@@ -148,9 +151,11 @@ export default function Gold() {
       if (randomOperators > 0.5) {
         setCounter((counter = counter + 5));
         setGambleCounter((gambleCounter = gambleCounter + 5));
+        setGambleCounter1((gambleCounter1 = gambleCounter1 + 1));
       } else {
         setCounter((counter = counter - 7));
         setGambleCounter((gambleCounter = gambleCounter - 7));
+        setGambleCounter1((gambleCounter1 = gambleCounter1 + 1));
       }
     }
   }
@@ -207,9 +212,11 @@ export default function Gold() {
     }
   };
 
+
+
   function buttonsAppear() {
     //if function making butons appear when certain thresholds
-    if (counter1 < 10 && gambleCounter >= 0) {
+    if (counter1 < 10 && gambleCounter1 >= 0) {
       return (
         <>
           <p> Total Gold = {counter} </p>
@@ -221,7 +228,7 @@ export default function Gold() {
           <button onClick={reset}>Reset</button>
         </>
       );
-    } else if (counter1 >= 10 && donateCounter <= 50 && gambleCounter >= 0) {
+    } else if (counter1 >= 10 && donateCounter <= 50 && gambleCounter1 >= 0) {
       //second part I tried making a cleaner way but this works and is simple even though its messy
       let buttonAlert = localStorage.getItem('donateButton') || '';
       if (buttonAlert != 'yes') {
@@ -230,6 +237,7 @@ export default function Gold() {
         );
         localStorage.setItem('donateButton', 'yes');
       }
+      console.log(counter1, donateCounter, gambleCounter1)
       return (
         <>
           <p> Total Gold = {counter} </p>
@@ -240,7 +248,7 @@ export default function Gold() {
           <button onClick={reset}>Reset</button>
         </>
       );
-    } else if (counter1 >= 10 && donateCounter >= 50 && gambleCounter >= 0) {
+    } else if (counter1 >= 10 && donateCounter >= 50 && gambleCounter1 >= 0 && gambleCounter1 < 5) {
       //third part it was about here i realiesed I  can use function for repeatingg code but im nearly finished
       let buttonAlert = localStorage.getItem('gamblingButton') || '';
       if (buttonAlert != 'yes') {
@@ -249,7 +257,6 @@ export default function Gold() {
         );
         localStorage.setItem('gamblingButton', 'yes');
       }
-
       return (
         <>
           <p> Total Gold = {counter} </p>
@@ -268,10 +275,11 @@ export default function Gold() {
       let buttonAlert = localStorage.getItem('GpSButton') || '';
       if (buttonAlert != 'yes') {
         alert(
-          'You have lost money gambling have another income stream to help your addiction'
+          'You seem to enjoy Gambling maybe you should spend some of your winnings...'
         );
         localStorage.setItem('GpSButton', 'yes');
       }
+
       return (
         //returns evverything
         <>
@@ -286,15 +294,13 @@ export default function Gold() {
           <br></br>
           <br></br>
           <div className='componentContainer'>
-            <div className='shopContainer'>
-              <Shop
-                counter={counter}
-                donateCounter={donateCounter}
-                gambleCounter={gambleCounter}
-                GperS={GperS}
-                buyItem={buyItem}
-              />
-            </div>
+            <div className='shopContainer'><Shop
+          counter={counter}
+          donateCounter={donateCounter}
+          gambleCounter={gambleCounter}
+          GperS={GperS}
+          buyItem={buyItem}
+        /></div>
             <div className='journalContainer'>
               {showJournal && (
                 //working out I could do it like this came waaaaay to late and I cba to rewrite all my code however next time I do something like this I will. Also found out about DRY which I will do from now on/

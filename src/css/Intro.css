@@ -4,16 +4,21 @@
 }
 .master {
   display: flex;
-  width: 90%;
+  font-size: 12px;
+  width: 100%;
+  background-color: aqua;
 }
 
 * {
   font-family: Pixelify Sans;
-  font-size: 24px;
 }
 
 @media (max-width: 320px) {
   /* iPhone, portrait 480x320 */
+  .master {
+    display: flex;
+    font-size: 12px;
+  }
 }
 @media (max-width: 481px) {
   /*smaller tablets */

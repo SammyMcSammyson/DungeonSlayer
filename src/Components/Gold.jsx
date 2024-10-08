@@ -19,6 +19,8 @@ export default function Gold() {
   //setting up global gamble variable - changes on reset
   let [gambleCounter1, setGambleCounter1] = useState(0);
   //used for rendering
+  let [influence, setInfluence] = useState(0);
+  //influence counter
   let [showJournal, setShowJournal] = useState(false);
   //variable to check local storage continously not the cleanest way to do this and for bigger apps will cause issues but it works...
   let [unlockGuild, setGuild] = useState(false);
@@ -132,6 +134,7 @@ export default function Gold() {
     setGambleCounter((gambleCounter = 0));
     setGambleCounter1((gambleCounter1 = 0));
     setGpS((GperS = 0));
+    setInfluence((influence = 0));
     localStorage.clear();
   }
   function save() {

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Shop from './Shop';
 import Journals from './Journal';
 import '../css/Gold.css';
+import Guild from './Guild';
 import data from '../../public/Lib/data.json';
 
 export default function Gold() {
@@ -20,7 +21,7 @@ export default function Gold() {
   //used for rendering
   let [showJournal, setShowJournal] = useState(false);
   //variable to check local storage continously not the cleanest way to do this and for bigger apps will cause issues but it works...
-  let [unlockShop, setUnlockShop] = useState(false);
+  let [unlockGuild, setGuild] = useState(false);
   //variable for shop unlock
   let [GperS, setGpS] = useState(0);
   //setting up global GpS counter
@@ -106,6 +107,16 @@ export default function Gold() {
     const interval = setInterval(() => {
       const journalpresent = localStorage.getItem('Journal') !== null;
       setShowJournal(journalpresent);
+    }, 1000); // Check every second
+
+    return () => clearInterval(interval); // Clean up on unmount
+  }, []); //in hindsight I should of just done this on Counter in the dependency - C'est la vie.
+
+  useEffect(() => {
+    //function to check local storage works pretty much the same as GPS counter
+    const interval = setInterval(() => {
+      const guildpresent = localStorage.getItem('Adventuers Guild') !== null;
+      setGuild(guildpresent);
     }, 1000); // Check every second
 
     return () => clearInterval(interval); // Clean up on unmount
@@ -261,7 +272,7 @@ export default function Gold() {
   };
 
   function handleDragonsGuild() {
-    if (!purchasedItems.includes('winner')) {
+    if (purchasedItems.includes('winner')) {
       console.log('you win.');
       setCounter((counter = counter + 10000));
       alert(
@@ -402,6 +413,7 @@ export default function Gold() {
                 />
               )}
             </div>
+            <div className='guildContainer'>{unlockGuild && <Guild />}</div>
           </div>
         </>
       );

@@ -1,31 +1,15 @@
 import { useState } from 'react';
 import '../css/Journalcontainer.css';
-import Journal from '../../public/Lib/jorunal.json';
 
-export default function JournalContainer({
-  item,
-  buyJournal,
-  counter,
-  reset,
-  purchasedItems,
-  index,
-  handleDragonsGuild,
-}) {
+export default function GuildContainer({ item }) {
   let [isVisible, setIsVisible] = useState(false);
   //setting visbile and non visbile
-  let [journalPurchase, setJournalPurchase] = useState(false);
-  // was intially trying to do this in the orginal function in the Gold coponent however it obvisoly went wrong. After some googling on StackExcahnge worked out I could just group the functions here.
+
   const [itemColour, setItemColour] = useState('lightgrey'); // New state for background color
-
-  function handleClick() {
-    console.log('journalcontainer button Works');
-
-    //adding to button
-    setIsVisible(!isVisible);
-  }
+  let [guildPurchase, setGuildPurchase] = useState(false);
 
   function handleBuy() {
-    if (counter < item.PriceToUnlock) {
+    if (counter < item.GoldCost) {
       alert(
         'You cannot afford this so get on your hands and knees and start collecting Gold you Povo.'
       );
@@ -37,20 +21,15 @@ export default function JournalContainer({
       alert(`${item.DeathMessage}`);
       reset();
     } else {
-      buyJournal(item);
-      setJournalPurchase(true);
+      setGuildPurchase(true);
       setItemColour('lightgreen'); // Change color to indicate it's unlocked
-      setDragonCondition();
-      console.log(setDragonCondition());
-      handleDragonsGuild(index);
     }
   }
 
-  function setDragonCondition() {
-    if (index === 18) {
-      localStorage.setItem('winner', 'Yes');
-      console.log(index);
-    }
+  function handleClick() {
+    console.log('guild button Works');
+    //adding to button
+    setIsVisible(!isVisible);
   }
 
   return (
@@ -61,22 +40,22 @@ export default function JournalContainer({
           style={{ backgroundColor: itemColour }}
           onClick={handleClick}
         >
-          {item.Name}
+          {item.Story}
         </p>
 
         <div className='shopItemsContainer'>
           {isVisible ? (
             <>
-              {journalPurchase ? (
+              {guildPurchase ? (
                 <>
-                  <p>{item.StoryUnlock}</p>
+                  <p>{item.Description}</p>
                 </>
               ) : (
                 <>
                   <p>Advice</p>
                   <p>{item.Advice}</p>
                   <p>Price to Unlock:</p>
-                  <p className='shopItems'> {item.PriceToUnlock} </p>
+                  <p className='shopItems'> {item.GoldCost} </p>
                   <button onClick={handleBuy}>Unlock</button>
                 </>
               )}

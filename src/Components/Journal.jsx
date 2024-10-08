@@ -12,6 +12,8 @@ export default function Journals({
 }) {
   let [isVisible, setIsVisible] = useState(false);
   function handleClick() {
+    console.log('journal button Works');
+
     //adding to button
     setIsVisible(!isVisible);
   }

@@ -1,5 +1,5 @@
 import '../css/Intro.css';
-import dwarf from '../../public/images/dwarf.png';
+import dwarf from '../../public/images/Dwarf.png';
 
 export default function Intro() {
   return (
